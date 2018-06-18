@@ -4,13 +4,8 @@ title: About me
 subtitle: Why you'd want to go on a date with me
 ---
 
-My name is Inigo Montoya. I have the following qualities:
+My name is Taylor Smith. I am a data scientist and a hacker at heart. When I'm not writing machine learning models & software at work, chances are I'm writing code for a side project at home. Check out some of the [open source projects](https://github.com/tgsmith61591) I've built. 
 
-- I rock a great mustache
-- I'm extremely loyal to my family
+### My Resume
 
-What else do you need?
-
-### my history
-
-To be honest, I'm having some trouble remembering right now, so why don't you just watch [my movie](http://en.wikipedia.org/wiki/The_Princess_Bride_%28film%29) and it will answer **all** your questions.
+If that elevator pitch didn't do it for you, [here](./cv/taylor-g-smith-resume.pdf) is a copy of my latest resume.
