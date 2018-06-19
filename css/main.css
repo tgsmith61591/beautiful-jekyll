@@ -775,3 +775,8 @@ td.gutter {
   font-style: italic;
   font-size: 16px;
 }
+
+/* Allow tables to scroll in overflow */
+.table-wrapper {
+  overflow-x: scroll;
+}
