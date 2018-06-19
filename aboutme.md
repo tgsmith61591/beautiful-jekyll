@@ -1,10 +1,12 @@
 ---
 layout: page
 title: About me
-subtitle: Why you'd want to go on a date with me
+subtitle: Why you should work with me
 ---
 
 My name is Taylor Smith. I am a data scientist and a hacker at heart. When I'm not writing machine learning models & software at work, chances are I'm writing code for a side project at home. Check out some of the [open source projects](https://github.com/tgsmith61591) I've built. 
+
+I love collaborating with others; if you see a project you'd like to jump in on, please feel free to reach out. I also love to teach. If you have any questions about my work or how a package works, I'm happy to answer.
 
 ### My Resume
 
