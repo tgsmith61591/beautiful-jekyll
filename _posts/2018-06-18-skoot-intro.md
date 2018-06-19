@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Skoot&mdash;a 2-minute intro to dummy encoding
+title: An intro to dummy encoding with Skoot
 subtitle: Using Skoot to accelerate your ML pre-processing workflow
 gh-repo: tgsmith61591/skoot
 gh-badge: [star, fork, follow]
@@ -13,13 +13,11 @@ This post will introduce you to dummy coding in [skoot](https://github.com/tgsmi
 
 ## Mo' data, mo' problems
 
-Kinda (and not to say I'd ever ask for less data). But you know what I'm getting at... 
+*(Kinda and not to say you'd ever ask for less data. But you know what I'm getting at...)* 
 
 Imagine a client comes at you with a business question and hands you all the data you'll need to solve it. Is it ever sparkling clean and free of errors (typographical, erroneous sensor values, data omission or other)? 
 
-**NO!** 
-
-It's such a given it's nearly a cliché to even bring up here, but the fact of the matter is you will always spend a significant amount of time cleaning your data, and the more features you have, the more time you'll spend on data cleansing tasks.
+**NO!** Even when the data has been used for modeling before, you'll generally spend a significant amount of time cleaning your data, and the more features you have, the more time you'll spend on data cleansing tasks.
 
 Let's say you're given the following dataset (the "adult data set" [available on the UCI repo](https://archive.ics.uci.edu/ml/datasets/Adult); ~3.8MB):
 
@@ -43,10 +41,11 @@ If you want the cleanest pipeline possible, you'll end up building several custo
   * What happens if there are unknown levels in the test data?
   * How can we avoid the [dummy variable trap?](http://www.algosome.com/articles/dummy-variable-trap-regression.html)
 
-Skoot automates this for us seamlessly. If we look at the dtypes of the dataset, we can identify which will need dummy-encoding:
+Skoot addresses these for us seamlessly. If we look at the dtypes of the dataset, we can identify which will need dummy-encoding:
 
 {% highlight python linenos %}
 import pandas as pd
+from sklearn.model_selection import train_test_split
 
 df = pd.read_csv("~/Downloads/adult.data.txt", header=None,
                  names=["age", "workclass", "fnlwgt", "education", 
@@ -61,6 +60,11 @@ object_cols = df.select_dtypes(["object",
 # with some examination we can see that "education-num" is just 
 # an ordinal mirror of "education", so we can drop it
 df.drop("education-num", axis=1, inplace=True)
+
+# As always, we need to split our data
+X_train, X_test, y_train, y_test = train_test_split(df, y, 
+                                                    test_size=0.2,
+                                                    random_state=42)
 {% endhighlight %}
 
 This gives us the following fields as "object" (or string) type:
@@ -74,13 +78,13 @@ This gives us the following fields as "object" (or string) type:
 * sex
 * native-country
 
-We can use the fields to very quickly one-hot encode all the dummy variables and drop one level (to avoid the dummy trap):
+With skoot we can very quickly one-hot encode all the categorical variables and drop one level (to avoid the dummy trap). Note that skoot does not force types when defining the `DummyEncoder`&mdash;this is because often times `int` fields are actually ordinal categorical features that should be encoded (like the "education-num" above). Instead, skoot allows us to defined which specific columns to which to apply the transformation: 
 
 {% highlight python linenos %}
 from skoot.preprocessing import DummyEncoder
 
 encoder = DummyEncoder(cols=object_cols, drop_one_level=True)
-encoder.fit_transform(df).head()
+encoder.fit_transform(X_train).head()
 {% endhighlight %}
 
 And now our matrix looks like this:
@@ -97,7 +101,38 @@ And now our matrix looks like this:
 
 </div>
 
-To apply this to your test data, just as with any other scikit-learn transformer, you simply use the `transform` method.
-The full code for this example is located in the [code folder](code/2018-06-18-intro-to-skoot-dummy.ipynb).
+To apply this to your test data, just as with any other scikit-learn transformer, you simply use the `transform` method:
+
+
+{% highlight python linenos %}
+encoder.transform(X_test)
+{% endhighlight %}
+
+
+### Things to note
+
+* The resulting features drop one factor level from each categorical variable if `drop_one_level=True` is specified (by default).
+* We address the situation where an unknown factor level is present
+
+Here's a demo of what happens when there's a new factor level present:
+
+
+{% highlight python linenos %}
+# select a test row:
+test_row = X_test.iloc[0]
+
+# set the country to something that is obviously not real:
+test_row.set_value('native-country', "Atlantis")
+
+# transform the new row:
+trans2 = encoder.transform(pd.DataFrame([test_row]))
+
+# prove that we did not assign a country encoding:
+nc_mask = trans2.columns.str.contains("native-country")
+assert trans2[trans2.columns[nc_mask]].sum().sum() == 0
+{% endhighlight %}
+
+
+The full code for this example is located in the [code folder](https://github.com/tgsmith61591/tgsmith61591.github.io/blob/master/code/2018-06-18-intro-to-skoot-dummy.ipynb).
 
 **Questions? Technical remarks? Feel free to email me at taylor.smith@alkaline-ml.com**
