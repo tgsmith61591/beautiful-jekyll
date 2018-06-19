@@ -78,7 +78,7 @@ This gives us the following fields as "object" (or string) type:
 * sex
 * native-country
 
-With skoot we can very quickly one-hot encode all the categorical variables and drop one level (to avoid the dummy trap). Note that skoot does not force types when defining the `DummyEncoder`&mdash;this is because often times `int` fields are actually ordinal categorical features that should be encoded (like the "education-num" above). Instead, skoot allows us to defined which specific columns to which to apply the transformation: 
+With skoot we can very quickly one-hot encode all the categorical variables and drop one level (to avoid the dummy trap). Note that skoot does not force types when defining the `DummyEncoder`&mdash;this is because often times `int` fields are actually ordinal categorical features that should be encoded (like the "education-num" above). Instead, skoot allows us to define which specific columns on which to apply a transformation: 
 
 {% highlight python linenos %}
 from skoot.preprocessing import DummyEncoder
@@ -133,6 +133,6 @@ assert trans2[trans2.columns[nc_mask]].sum().sum() == 0
 {% endhighlight %}
 
 
-The full code for this example is located in the [code folder](https://github.com/tgsmith61591/tgsmith61591.github.io/blob/master/code/2018-06-18-intro-to-skoot-dummy.ipynb).
+And there you have it! <2 minutes to dummy encode your categorical features. The full code for this example is located in the [code folder](https://github.com/tgsmith61591/tgsmith61591.github.io/blob/master/code/2018-06-18-intro-to-skoot-dummy.ipynb).
 
 **Questions? Technical remarks? Feel free to email me at taylor.smith@alkaline-ml.com**
