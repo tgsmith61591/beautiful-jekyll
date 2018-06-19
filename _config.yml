@@ -28,7 +28,7 @@ navbar-links:
     - Auto-ARIMA for Python: "https://github.com/tgsmith61591/pyramid/"
     - Clustering in Java: "https://github.com/tgsmith61591/clust4j/"
     - Skoot&mdash;Accelerate your ML workflow: "https://github.com/tgsmith61591/skoot/"
-  Publishings:
+  Publications:
     - Hands-on Machine Learning with Python and Scikit-learn: "https://www.packtpub.com/big-data-and-business-intelligence/hands-machine-learning-python-and-scikit-learn-video"
   Github: "http://github.com/tgsmith61591"
 
@@ -73,7 +73,7 @@ author:
 # You can reorder the items to define the link order.
 # If you want to add a new link that isn't here, you'll need to also edit the file _data/SocialNetworks.yml
 social-network-links:
-  rss: true
+  rss: false
   email: "taylor.smith@alkaline-ml.com"
   github: tgsmith61591
   twitter: TayGriffinSmith
