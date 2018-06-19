@@ -4,7 +4,7 @@ title: An intro to dummy encoding with Skoot
 subtitle: Using Skoot to accelerate your ML pre-processing workflow
 gh-repo: tgsmith61591/skoot
 gh-badge: [star, fork, follow]
-tags: [skoot, machine-learning, dummy-encoding, tutorials]
+tags: [skoot, python, machine-learning, dummy-encoding, tutorials]
 ---
 
 This post will introduce you to dummy coding in [skoot](https://github.com/tgsmith61591/skoot), one of my projects dedicated to helping machine learning practitioners automate as much of their workflow as possible. Those who have worked in the field for a while know that 80 - 90% of a data scientist's time is spent solely on cleaning up data or building bespoke transformers to fit into an eventual production pipeline&mdash;skoot aims to solve exactly this problem by abstracting common transformer classes and data cleansing tasks into a reusable API.
