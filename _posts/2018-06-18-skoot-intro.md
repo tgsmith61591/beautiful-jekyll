@@ -83,5 +83,6 @@ And now our matrix looks like this:
 
 
 To apply this to your test data, just as with any other scikit-learn transformer, you simply use the `transform` method.
+The full code for this example is located in the [code folder](code/2018-06-18-intro-to-skoot-dummy.ipynb).
 
 **Questions? Technical remarks? Feel free to email me at taylor.smith@alkaline-ml.com**
