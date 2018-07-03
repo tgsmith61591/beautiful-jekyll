@@ -9,12 +9,16 @@ If you've only ever tinkered with Hadoop within the context of a [sandbox](https
 
 ## Conda on the cluster
 
-For local python development, [Anaconda](https://www.anaconda.com) exists to manage & modularize your dependencies and environments. However, for a software package as devoted as it is to environment management, the documentation that exists around using Conda environments in a cluster is sparse at best. In this tutorial, we'll cover how we can manage our environments across the cluster specifically for use in our Pyspark jobs. Though there are several methods to distributing your code to your datanodes, shipping a Conda environment is likely to be your most robust option for the following reasons.
+For local python development, [Anaconda](https://www.anaconda.com) exists to manage & modularize your dependencies and environments. However, for a software package as devoted as it is to environment management, the documentation that exists around using Conda environments in a cluster is sparse at best. 
+
+In this tutorial, we'll cover how we can manage our environments across the cluster specifically for use in our Pyspark jobs. Though there are several methods to distributing your code to your datanodes, shipping a Conda environment is likely to be your most robust option for the following reasons.
 
 
 ### Reason 1: your package doesn't exist on the cluster
 
-If you've developed a custom python package, it's unlikely it exists across all the executors on the cluster. Moreover, if it *does* and you make changes, syncing a production cluster via Puppet is rarely going to be the best option. Let's imagine we have a huge 2D matrix, and we want to compute a given percentile for each feature using Pandas. We can do this in a distributed fashion on each executor by parallelizing the transpose of our matrix:
+If you've developed a custom python package, it's unlikely it exists across all the executors on the cluster. Moreover, if it *does* and you make changes, syncing a production cluster via Puppet is rarely going to be the best option. 
+
+Let's imagine we have a huge 2D matrix, and we want to compute a given percentile for each feature using Pandas. We can do this in a distributed fashion on each executor by parallelizing the transpose of our matrix:
 
 {% highlight python linenos %}
 import numpy as np
@@ -90,7 +94,7 @@ The Python egg cache directory is currently set to:
 And anyone who has worked on an enterprise cluster before knows that getting permissions amended on production clusters is a loooong process.
 
 
-### Reason 3: your package contains code that needed to be built
+### Reason 3: your package contains code that needs compiling
 
 Even if you *do* have permission to the directory, if your python package contains C code, you're at the mercy of the versions of numpy, scipy or other C-based python packages located on the executors as to whether your code will work. If the version you built under does not match that on the executors, you can always hit low level dtype errors:
 
@@ -221,7 +225,7 @@ You can test that this worked in the same manner as above.
 
 ## Epilogue
 
-And that's it! Two approaches to a modular & sustainable Pyspark cluster deployment pattern. 
+And that's it! Two approaches to a modular & sustainable Pyspark cluster deployment pattern. By shipping anaconda environments, you can avoid permissions errors, version mismatch problems, and other cluster management woes. 
 
 
 **Questions? Technical remarks? Feel free to email me at taylor.smith@alkaline-ml.com, or leave a comment below**
