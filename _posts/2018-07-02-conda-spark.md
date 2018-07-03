@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Using Conda environments in Pyspark
+title: Using Conda envs in Pyspark
 subtitle: 3 reasons you should be deploying your Conda environments for your Pyspark jobs
 tags: [python, pyspark, tutorials]
 ---
