@@ -25,7 +25,8 @@ from sklearn.datasets import load_iris
 
 # load and split the data
 X, y = load_iris(return_X_y=True)
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, 
+X_train, X_test, y_train, y_test = train_test_split(X, y, 
+                                                    test_size=0.3, 
                                                     random_state=42)
 
 # scale the data
@@ -49,9 +50,12 @@ from sklearn.metrics import accuracy_score
 # initialize a random state, create several "normal" features
 rs = np.random.RandomState(42)
 X = rs.normal(25., 7., (1000, 3))
+
+# if the last feature is >= 35, the part WILL FAIL
 y = X[:, -1] >= 35.
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=rs, 
+X_train, X_test, y_train, y_test = train_test_split(X, y, 
+                                                    random_state=rs, 
                                                     test_size=0.25,
                                                     stratify=y)
 
@@ -113,7 +117,7 @@ sns.pairplot(pd.DataFrame(X_new_data_scaled))
 
 ![test z scores](../img/2018-07-23-test-z-scores.png)
 
-If we look at the distributional differences between the offending features between our training set and new data, we should immediately have recognized this problem, but with the current setup, we'll never diagnose it properly in time, and the mechanical parts will likely fail without us having issued a warning:
+If we look at the distributional differences in the offending features between our training set and new data, we should immediately have recognized this problem, but with the current setup, we'll never diagnose it properly in time; the mechanical parts will likely fail without us having issued a warning:
 
 {% highlight python linenos %}
 sns.distplot(pd.DataFrame(X_train[:, -1]), kde=True)
@@ -126,7 +130,7 @@ sns.distplot(pd.DataFrame(X_new_data[:, -1]), kde=True)
 
 Avoiding this problem is fairly straight-forward: **don't fit anything on your test set!**
 
-Scikit-learn makes this very simple with the `Pipeline` object. Here's how we can rework our model to catch the covariate shift properly:
+Scikit-learn makes this very simple with the [`Pipeline`](http://scikit-learn.org/stable/modules/generated/sklearn.pipeline.Pipeline.html) object. Here's how we can rework our model to catch the covariate shift properly:
 
 {% highlight python linenos %}
 from sklearn.pipeline import Pipeline
@@ -157,7 +161,7 @@ By using a pipeline, we can ensure that our model is only ever fit on our *train
 
 Hopefully it should be clear now (if it wasn't before) why you should *never* fit anything on your test set. You can avoid this headache by using the [`Pipeline`](http://scikit-learn.org/stable/modules/generated/sklearn.pipeline.Pipeline.html) from scikit-learn. The full code for this example is located in the [code folder](https://github.com/tgsmith61591/tgsmith61591.github.io/blob/master/code/2018-07-23-never-fit-on-test.ipynb).
 
-In the next post, we'll cover data drudging.
+In the next post, we'll cover another horrid habit: **data drudging**.
 
 
 
