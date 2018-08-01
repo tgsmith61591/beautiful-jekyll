@@ -10,3 +10,8 @@ ehthumbs.db
 
 # python
 .ipynb_checkpoints
+*.pyc
+__pycache__
+
+# For pycharm
+.idea/
