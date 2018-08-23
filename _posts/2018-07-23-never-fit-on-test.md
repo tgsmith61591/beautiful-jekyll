@@ -161,7 +161,7 @@ By using a pipeline, we can ensure that our model is only ever fit on our *train
 
 Hopefully it should be clear now (if it wasn't before) why you should *never* fit anything on your test set. You can avoid this headache by using the [`Pipeline`](http://scikit-learn.org/stable/modules/generated/sklearn.pipeline.Pipeline.html) from scikit-learn. The full code for this example is located in the [code folder](https://github.com/tgsmith61591/tgsmith61591.github.io/blob/master/code/2018-07-23-never-fit-on-test.ipynb).
 
-In the next post, we'll cover another horrid habit: **data drudging**.
+In the next post, we'll cover another horrid habit: **data dredging**.
 
 
 
