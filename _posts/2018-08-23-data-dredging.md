@@ -67,20 +67,24 @@ __But this is a *dangerous* practice!!!__ By introducing your holdout set too ea
 In a sense, you end up inadvertently fitting your test set. __Any model-tuning action you take as a result of scoring against your holdout set is data dredging.__
 
 
-## "But I'm not fitting my test set, so how is this bad?"
+## "But I'm not fitting my test set. How is this bad?"
 
-You don't have to fit your test set directly in order to leak information to your models. There is an inherit bias that the analyst/scientist/engineer imparts on his/her models, and by making repeated decisions based on hold-out performance, you inflate the personal bias you impose. You might end up acheiving outstanding performance on your test set, but your model will likely not generalize well to the new data it sees once you deploy it.
+You don't have to fit your test set directly in order to leak information to your models. There is an inherit bias that the analyst/scientist/engineer imparts on his/her models, and by making repeated decisions based on hold-out performance, you inflate the personal bias you impose. 
+
+You might end up acheiving outstanding performance on your test set, but your model will likely not generalize well to the new data it sees once you deploy it.
 
 
 ## Why does this happen?
 
 I have several hypotheses for why I see this practice so much:
 
-#### 1. Academic settings don't emphasize model deployment
+#### 1. Academic settings don't emphasize the model lifecycle
 
 In most academic settings, machine learning problems begin and end with achieving the best model possible on the provided test set. Naturally, if you're already provided said holdout set, you're more tempted to p-hack, and budding data scientists don't learn to consider that the model will have to make decisions on future data that does *not* have corresponding labels.
 
-#### 2. 
+#### 2. People misunderstand the purpose of cross-validation
+
+For such a well-documented concept, few things in ML share the level of misunderstanding that CV suffers. Lots of folks use it interchangeably with train/test splits, and yet others seem to assume that if a model is fit with cross-validation, it's impervious to the perils of overfitting. Neither is true.
 
 
 ## How can we avoid it?
