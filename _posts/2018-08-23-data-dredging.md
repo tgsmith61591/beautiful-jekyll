@@ -84,12 +84,14 @@ In most academic settings, machine learning problems begin and end with achievin
 
 #### 2. People misunderstand the purpose of cross-validation
 
-For such a well-documented concept, few things in ML share the level of misunderstanding that CV suffers. Lots of folks use it interchangeably with train/test splits, and yet others seem to assume that if a model is fit with cross-validation, it's impervious to the perils of overfitting. Neither is true.
+For such a well-documented concept, few things in ML share the level of misunderstanding that CV suffers. Lots of folks use it interchangeably with train/test splits, and yet others seem to assume that if a model is fit with cross-validation, it's impervious to the perils of overfitting. 
+
+Neither is true, and as a result, CV isn't used to its full potential.
 
 
 ## How can we avoid it?
 
-The answer, as with most things in machine learning, is cross validation! We can approach this several ways.
+Avoiding data dredging is more simple that you might think. The answer, as with most things in machine learning, is cross validation! We can approach this several ways.
 
 ### Benchmark a model with ``cross_val_score``
 
