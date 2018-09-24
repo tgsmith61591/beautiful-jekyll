@@ -30,6 +30,7 @@ navbar-links:
     - Skoot&mdash;Accelerate your ML workflow: "https://github.com/tgsmith61591/skoot/"
   Publications:
     - Hands-on Machine Learning with Python and Scikit-learn: "https://www.packtpub.com/big-data-and-business-intelligence/hands-machine-learning-python-and-scikit-learn-video"
+    - Hands-on Supervised Machine Learning with Python: "https://www.packtpub.com/big-data-and-business-intelligence/hands-supervised-machine-learning-python-video"
   Github: "http://github.com/tgsmith61591"
 
 # Image to show in the navigation bar - image must be a square (width = height)

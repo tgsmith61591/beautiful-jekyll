@@ -1,7 +1,7 @@
 ---
 layout: post
 title: How to ensure model obsolescence (part 2)
-subtitle: Data drudging
+subtitle: Data dredging
 tags: [python, machine-learning, scikit-learn, best-practices, interview-prep, tutorials]
 ---
 
