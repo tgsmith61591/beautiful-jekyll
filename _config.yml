@@ -25,7 +25,7 @@ description: Distilling machine learning into its basics
 navbar-links:
   About Me: "aboutme"
   Projects:
-    - Auto-ARIMA for Python: "https://github.com/tgsmith61591/pyramid/"
+    - Auto-ARIMA for Python: "https://github.com/tgsmith61591/pmdarima/"
     - Clustering in Java: "https://github.com/tgsmith61591/clust4j/"
     - Skoot&mdash;Accelerate your ML workflow: "https://github.com/tgsmith61591/skoot/"
   Publications:
