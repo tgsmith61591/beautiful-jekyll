@@ -25,8 +25,8 @@ and deployments to `gh-pages` using Circle CI.
 
 ## The first push to `gh-pages`:
 
-Before we automate the builds, it's helpful to have the `gh-pages` branch on remote (the
-server). Make sure you have all of your changes committed and pushed before proceeding.
+Before we automate the builds, it's helpful to have the `gh-pages` branch on the
+server. Make sure you have all of your changes committed and pushed before proceeding.
 
 From the `master` (or your default) branch, we're going to checkout a new
 [orphaned branch](https://csinaction.com/2016/02/12/orphaned-brachnes-in-git/) called
